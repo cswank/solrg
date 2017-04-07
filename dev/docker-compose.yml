@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  zk:
+    image: wurstmeister/zookeeper
+    command: bash /usr/bin/start-zk.sh
+
+  solr1:
+    image: solr:6.4.2
+    command: bash -c 'solr start -f -z zk:2181'
+    volumes:
+      - "./solrg:/tmp/solrg:rw"
+    ports:
+      - "8983:8983"
+
+  solr2:
+    image: solr:6.4.2
+    command: bash -c 'solr start -f -z zk:2181'
+
+  solr3:
+    image: solr:6.4.2
+    command: bash -c 'solr start -f -z zk:2181'
+
+  solr4:
+    image: solr:6.4.2
+    command: bash -c 'solr start -f -z zk:2181'
