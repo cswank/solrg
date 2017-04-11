@@ -21,32 +21,52 @@ var _ = Describe("solrg", func() {
 
 		BeforeEach(func() {
 			col = zk.Collection{
+				Leaders: map[string]string{
+					"shard1": "http://172.19.0.2:8983/solr",
+					"shard2": "http://172.19.0.6:8983/solr",
+					"shard3": "http://172.19.0.2:8983/solr",
+				},
 				Shards: map[string]zk.Shard{
 					"shard1": {
-						Range: "75550000-7fffffff",
+						Range: "80000000-d554ffff",
 						State: "active",
 						Replicas: map[string]zk.Replica{
-							"core_node27": {
-								BaseURL: "http://172.19.0.3:8983/solr",
+							"core_node2": {
+								BaseURL: "http://172.19.0.2:8983/solr",
 								State:   "active",
 								Leader:  "true",
 							},
-							"core_node33": {
-								BaseURL: "http://172.19.0.2:8983/solr",
+							"core_node6": {
+								BaseURL: "http://172.19.0.4:8983/solr",
 								State:   "active",
 							},
 						},
 					},
 					"shard2": {
-						Range: "75550000-7fffffff",
+						Range: "d5550000-2aa9ffff",
 						State: "active",
 						Replicas: map[string]zk.Replica{
 							"core_node1": {
-								BaseURL: "http://172.19.0.1:8983/solr",
+								BaseURL: "http://172.19.0.6:8983/solr",
 								State:   "active",
 								Leader:  "true",
 							},
+							"core_node4": {
+								BaseURL: "http://172.19.0.3:8983/solr",
+								State:   "active",
+							},
+						},
+					},
+					"shard3": {
+						Range: "2aaa0000-7fffffff",
+						State: "active",
+						Replicas: map[string]zk.Replica{
 							"core_node3": {
+								BaseURL: "http://172.19.0.2:8983/solr",
+								State:   "active",
+								Leader:  "true",
+							},
+							"core_node5": {
 								BaseURL: "http://172.19.0.4:8983/solr",
 								State:   "active",
 							},

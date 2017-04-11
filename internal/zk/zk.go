@@ -25,4 +25,7 @@ type Collection struct {
 	Router            struct {
 		Name string `json:"name"`
 	} `json:"router"`
+
+	//Leaders   shard   host
+	Leaders map[string]string
 }
