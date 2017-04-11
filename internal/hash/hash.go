@@ -18,8 +18,9 @@ func Hash(id string) (int32, error) {
 		int32(murmur3.Sum32([]byte(parts[1]))),
 	}
 	masks := []int32{
-		(-1 << (32 - 16)),
-		65535,
+		(-1 << (32 - 16)), // -10000000000000000
+		65535,             // 1111111111111111
 	}
+
 	return (hashes[0] & masks[0]) | (hashes[1] & masks[1]), nil
 }
